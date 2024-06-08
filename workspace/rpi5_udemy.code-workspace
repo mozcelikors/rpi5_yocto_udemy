@@ -1,0 +1,58 @@
+{
+	"folders": [
+		{
+			"name": "VSCodeWorkspace",
+			"path": "/media/mozcelikors/ext4/VSCodeWorkspace"
+		},
+		{
+			"path": "/media/mozcelikors/ext4/Yocto_Builds/rpi5_udemy/workspace"
+		},
+		{
+			"path": "/media/mozcelikors/ext4/Yocto_Builds/rpi5_udemy/docs"
+		},
+		{
+			"path": "/media/mozcelikors/ext4/Yocto_Builds/rpi5_udemy/poky"
+		},
+	],
+	"settings": {
+        "editor.detectIndentation": false,
+        "workbench.tree.indent": 30,
+        "workbench.colorTheme": "Default Light+",
+		"editor.insertSpaces": false,
+		"explorer.autoReveal": false,
+		"git.ignoreLimitWarning": true,
+		"search.followSymlinks": false,
+		"git.enabled": false,
+		"C_Cpp.autocomplete": "Disabled",
+		"workbench.statusBar.visible": false,
+		"search.exclude": {
+			"**/.git": true,
+			"**/.repo": true
+		},
+		"restructuredtext.syntaxHighlighting.disabled": true,
+		"esbonio.sphinx.confDir": "",
+		"python.autoComplete.extraPaths": [
+			"${workspaceFolder}/sources/poky/bitbake/lib",
+			"${workspaceFolder}/sources/poky/meta/lib"
+		],
+		"python.analysis.extraPaths": [
+			"${workspaceFolder}/sources/poky/bitbake/lib",
+			"${workspaceFolder}/sources/poky/meta/lib"
+		],
+		"[python]": {
+			"diffEditor.ignoreTrimWhitespace": false,
+			"editor.formatOnType": true,
+			"editor.wordBasedSuggestions": "off",
+			"files.trimTrailingWhitespace": false
+		},
+		"[shellscript]": {
+			"files.eol": "\n",
+			"files.trimTrailingWhitespace": false
+		},
+		"files.watcherExclude": {
+			"**/build/downloads/**": true,
+			"**/build/sstate-cache/**": true,
+			"**/build/tmp/**": true
+		}
+	}
+}
