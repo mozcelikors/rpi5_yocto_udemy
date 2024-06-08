@@ -5,13 +5,13 @@
 			"path": "/media/mozcelikors/ext4/VSCodeWorkspace"
 		},
 		{
-			"path": "/media/mozcelikors/ext4/Yocto_Builds/rpi5_udemy/workspace"
+			"path": "../workspace"
 		},
 		{
-			"path": "/media/mozcelikors/ext4/Yocto_Builds/rpi5_udemy/docs"
+			"path": "../docs"
 		},
 		{
-			"path": "/media/mozcelikors/ext4/Yocto_Builds/rpi5_udemy/poky"
+			"path": "../poky"
 		},
 	],
 	"settings": {
