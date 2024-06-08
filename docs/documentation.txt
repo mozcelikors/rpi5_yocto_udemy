@@ -1,3 +1,9 @@
+Reference Documentation
+###########################
+https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html
+https://docs.yoctoproject.org/ref-manual/variables.html
+
+
 Preliminary Steps
 #############################
 
@@ -9,3 +15,7 @@ Download Poky
 
 git clone git://git.yoctoproject.org/poky -b scarthgap
 
+Building Image
+########################
+
+. oe-init-build-env
