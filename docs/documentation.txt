@@ -2,6 +2,7 @@ Reference Documentation
 ###########################
 https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html
 https://docs.yoctoproject.org/ref-manual/variables.html
+https://layers.openembedded.org/layerindex/branch/master/layers/
 
 
 Preliminary Steps
@@ -15,7 +16,16 @@ Download Poky
 
 git clone git://git.yoctoproject.org/poky -b scarthgap
 
-Building Image
-########################
+Building Software Package Example
+######################################
 
 . oe-init-build-env
+bitbake dropbear
+
+Cloning Additional Layers
+##############################
+
+Use https://layers.openembedded.org/layerindex/branch/master/layers/ to pick layer
+
+cd poky/
+git clone <layer_git> -b <branch_name>

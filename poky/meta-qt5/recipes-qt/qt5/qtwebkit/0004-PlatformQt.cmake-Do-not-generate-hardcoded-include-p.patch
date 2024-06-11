@@ -1,0 +1,38 @@
+From fe11ff38c2fd4a88147f6bc9f618a8c538bef711 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 24 Sep 2018 02:11:10 -0700
+Subject: [PATCH] PlatformQt.cmake: Do not generate hardcoded include paths
+
+If we do not use this define,then it falls into else case which
+generated .pri files with /usr/include and so on for includes and
+compiler does not like specifying absolute include paths pointing to
+build host includes
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Upstream-Status: Pending
+---
+ Source/WebKit/PlatformQt.cmake | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Source/WebKit/PlatformQt.cmake b/Source/WebKit/PlatformQt.cmake
+index 10f595e77..daaabfc6e 100644
+--- a/Source/WebKit/PlatformQt.cmake
++++ b/Source/WebKit/PlatformQt.cmake
+@@ -521,7 +521,7 @@ if (NOT MACOS_BUILD_FRAMEWORKS)
+     install(FILES ${WebKit_PKGCONFIG_FILENAME} DESTINATION ${ECM_PKGCONFIG_INSTALL_DIR} COMPONENT Data)
+ endif ()
+ 
+-if (KDE_INSTALL_USE_QT_SYS_PATHS)
++if (KDE_INSTALL_USE_QT_SYS_PATHS OR CROSS_COMPILE)
+     set(WebKit_PRI_ARGUMENTS
+         BIN_INSTALL_DIR "$$QT_MODULE_BIN_BASE"
+         LIB_INSTALL_DIR "$$QT_MODULE_LIB_BASE"
+@@ -751,7 +751,7 @@ if (NOT MACOS_BUILD_FRAMEWORKS)
+     install(FILES ${WebKitWidgets_PKGCONFIG_FILENAME} DESTINATION ${ECM_PKGCONFIG_INSTALL_DIR} COMPONENT Data)
+ endif ()
+ 
+-if (KDE_INSTALL_USE_QT_SYS_PATHS)
++if (KDE_INSTALL_USE_QT_SYS_PATHS OR CROSS_COMPILE)
+     set(WebKitWidgets_PRI_ARGUMENTS
+         BIN_INSTALL_DIR "$$QT_MODULE_BIN_BASE"
+         LIB_INSTALL_DIR "$$QT_MODULE_LIB_BASE"
