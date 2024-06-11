@@ -1,0 +1,49 @@
+{
+    "bitbake.pathToBitbakeFolder": "${workspaceFolder}/bitbake",
+    "bitbake.pathToEnvScript": "${workspaceFolder}/oe-init-build-env",
+    "bitbake.pathToBuildFolder": "${workspaceFolder}/build",
+    "bitbake.commandWrapper": "",
+    "bitbake.workingDirectory": "${workspaceFolder}",
+    "files.exclude": {
+        "**/.git/**": true,
+        "**/_build/**": true,
+        "**/buildhistory/**": true,
+        "**/cache/**": true,
+        "**/downloads/**": true,
+        "**/node_modules/**": true,
+        "**/oe-logs/**": true,
+        "**/oe-workdir/**": true,
+        "**/sstate-cache/**": true,
+        "**/tmp*/**": true,
+        "**/workspace/attic/**": true,
+        "**/workspace/sources/**": true
+    },
+    "files.watcherExclude": {
+        "**/.git/**": true,
+        "**/_build/**": true,
+        "**/buildhistory/**": true,
+        "**/cache/**": true,
+        "**/downloads/**": true,
+        "**/node_modules/**": true,
+        "**/oe-logs/**": true,
+        "**/oe-workdir/**": true,
+        "**/sstate-cache/**": true,
+        "**/tmp*/**": true,
+        "**/workspace/attic/**": true,
+        "**/workspace/sources/**": true
+    },
+    "python.analysis.exclude": [
+        "**/_build/**",
+        "**/.git/**",
+        "**/buildhistory/**",
+        "**/cache/**",
+        "**/downloads/**",
+        "**/node_modules/**",
+        "**/oe-logs/**",
+        "**/oe-workdir/**",
+        "**/sstate-cache/**",
+        "**/tmp*/**",
+        "**/workspace/attic/**",
+        "**/workspace/sources/**"
+    ]
+}
