@@ -1,9 +1,14 @@
-Reference Documentation
-###########################
+Reference Documentation (Yocto)
+##################################
 https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html
 https://docs.yoctoproject.org/ref-manual/variables.html
 https://layers.openembedded.org/layerindex/branch/master/layers/
 
+
+Reference Documentation (Raspberry Pi)
+########################################
+https://www.raspberrypi.com/documentation/
+https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
 
 Preliminary Steps
 #############################
