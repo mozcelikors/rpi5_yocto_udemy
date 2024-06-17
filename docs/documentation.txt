@@ -34,3 +34,13 @@ Use https://layers.openembedded.org/layerindex/branch/master/layers/ to pick lay
 
 cd poky/
 git clone <layer_git> -b <branch_name>
+
+
+Cooking (bitbake'ing) the image recipe
+################################
+bitbake core-image-minimal
+
+Serial communication
+######################
+ls /dev/tty*
+sudo minicom -s
