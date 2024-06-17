@@ -5,8 +5,6 @@ SRC_URI = " file://mysource "
 
 S = "${WORKDIR}/mysource"
 
-RDEPENDS:${PN}:append = " helloworldmake-app2 "
-
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 do_compile () {
