@@ -1,0 +1,149 @@
+Squish Commercial License Agreement
+Agreement version 3.1
+
+This Squish Commercial License Agreement ("Agreement") is made by and
+between The Qt Company Oy ("The Qt Company"), and you (either an
+individual or a legal entity) ("Licensee").
+
+
+IMPORTANT - READ CAREFULLY:
+
+1. The Qt Company developed and originated Squish including source code,
+documentation and example programs ("Licensed Software"). The Licensed
+Software is protected by copyright laws and international copyright
+treaties, as well as other intellectual property laws and
+treaties. The Qt Company retains all rights not expressly granted.
+
+2. By installing, copying, or otherwise using the Licensed Software,
+Licensee agrees to be bound by the terms of this Agreement. If
+Licensee does not agree to the terms of this Agreement, Licensee
+should not install, copy, or otherwise use the Licensed Software. In
+addition, by installing, copying, or otherwise using any updates or
+other components of the Licensed Software that Licensee receives
+separately as part of the Licensed Software ("Updates"), Licensee
+agrees to be bound by any additional license terms that accompany such
+Updates. If Licensee does not agree to the additional license terms
+that accompany such Updates, Licensee may not install, copy, or
+otherwise use such Updates.
+
+3. Upon Licensee's acceptance of the terms and conditions of this
+Agreement, The Qt Company grants Licensee the right to use the Licensed
+Software during the agreed validity period as set forth in the
+respective License Certificate ("License Term"), solely for Licensee's
+internal business purposes in the manner provided below.
+
+4a. If the license, as specified in the license certificate, is a
+Floating Tester Subscription or Floating Execution Subscription,
+Licensee may install the Licensed Software on an unlimited amount of
+computers. Concurrent use of the installed Licensed Software is
+limited to the number of floating seats purchased as specified in the
+license certificate and to persons employed or contracted by the
+Licensee. If the license is a Floating Execution License, Licensee may
+only use the installed Licensed Software for executing tests and
+processing test results, but not for developing, debugging and
+maintaining tests.
+
+4b. If the license, as specified in the license certificate, is a User
+Node-Locked Subscription, Licensee may install the Licensed Software
+for a single user on a single physical computer. Installation and
+usage in virtual machines or the use via remote access is prohibited.
+
+5. Licensee may modify the Licensed Software except for altering or
+removing any details of ownership, copyright, trademark or other
+property right connected with the Licensed Software.
+
+6. Licensee may not distribute the Licensed Software, modified or
+unmodified, separately or as part of any software package.
+
+7. Upon expiry of the initially agreed License Term, the respective
+License Terms shall be automatically extended to one or more
+extensions of previous License Term as agreed between the Parties
+("Renewal Term"), unless and until either Party notifies the other
+Party in writing, or any other method acceptable to The Qt Company, that it
+does not wish to continue the License Term, such notification to be
+provided to the other Party no less than thirty (30) days before
+expiry of the respective License Term. Unless otherwise agreed between
+the Parties, Renewal Term shall be of equal length with the initial
+License Term.
+
+Any such Renewal Term shall be subject to License Fees agreed between
+the Parties or, if no advance agreement exists, subject to The Qt Company
+standard pricing applicable at the commencement date of any such
+Renewal Term.
+
+Any price or other term specified for a Renewal Term shall be valid
+only for the specified time.
+
+
+WARRANTY DISCLAIMER
+
+8. The Licensed Software is licensed to Licensee "as is". To the
+maximum extent permitted by applicable law, The Qt Company on behalf of
+itself and its suppliers, disclaims all warranties and conditions,
+either expressed or implied, including, but not limited to, implied
+warranties of merchantability, fitness for a particular purpose, title
+and non-infringement with regard to the Licensed Software.
+
+
+LIMITATION OF LIABILITY
+
+9. If, The Qt Company's warranty disclaimer notwithstanding, The Qt Company is
+held liable to Licensee, whether in contract, tort or any other legal
+theory, based on the Licensed Software, The Qt Company's entire liability
+to Licensee and Licensee's exclusive remedy shall be, at The Qt Company's
+option, either (A) return of the price Licensee paid for the Licensed
+Software, or (B) repair or replacement of the Licensed Software,
+provided Licensee returns to The Qt Company all copies of the Licensed
+Software as originally delivered to Licensee. The Qt Company shall not
+under any circumstances be liable to Licensee based on failure of the
+Licensed Software if the failure resulted from accident, abuse or
+misapplication, nor shall The Qt Company under any circumstances be liable
+for special damages, punitive or exemplary damages, damages for loss
+of profits or interruption of business or for loss or corruption of
+data. Any award of damages from The Qt Company to Licensee shall not exceed
+the total amount Licensee has paid to The Qt Company in connection with
+this Agreement.
+
+
+SUPPORT AND UPDATES
+
+10. Licensee will be eligible to receive email based software support
+and access to Downloads and Updates to the Licensed Software for the
+License Term, in accordance with The Qt Company's then current policies and
+procedures, if any. Such policies and procedures may be changed from
+time to time.
+
+
+PRIVACY
+
+11. Licensee acknowledges and agrees that for the purpose of this
+agreement, The Qt Company may collect, use, transfer and disclose personal
+data pertaining to Users as well as any other employees and directors
+of the Licensee and its contractors relevant for carrying out the
+intent of this agreement. Such personal data may be collected from the
+Licensee or directly from the relevant individuals. The parties
+acknowledge that with regard to such personal data processed
+hereunder, The Qt Company shall be regarded as the Data Controller under
+the applicable data protection legislation. The Qt Company shall process
+any such personal data in accordance with its privacy policies and
+practices, which will comply with all applicable requirements of the
+General Data Protection Regulation (GDPR) and any national
+implementing laws and regulations.
+
+
+GENERAL PROVISIONS
+
+12. This Agreement may only be modified in writing signed by
+authorized representatives of Licensee and The Qt Company. In case of a
+conflict between this Agreement and the terms of any purchase order or
+other ordering document, this Agreement shall prevail. If any provision
+of this Agreement is found void or unenforceable, the remainder will
+remain valid and enforceable according to its terms. If any remedy
+provided is determined to have failed for its essential purpose, all
+limitations of liability and exclusions of damages set forth in this
+Agreement shall remain in effect.
+
+13. This Agreement shall be construed, interpreted and governed by the
+laws of Finland, the legal venue to be Helsinki District Court. The Qt
+Company reserves all rights not specifically granted in this
+Agreement.

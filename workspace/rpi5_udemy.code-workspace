@@ -15,6 +15,14 @@
 		},
 	],
 	"settings": {
+		"files.exclude": {
+			"build/tmp": true,
+			"build/downloads": true,
+			"build/sstate-cache": true,
+			"build/cache": true,
+			"build/hashserve.sock": true,
+			"build/bitbake.sock": true,
+		},
         "editor.detectIndentation": false,
         "workbench.tree.indent": 30,
         "workbench.colorTheme": "Default Light+",

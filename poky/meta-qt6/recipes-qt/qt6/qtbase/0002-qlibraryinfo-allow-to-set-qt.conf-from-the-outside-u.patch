@@ -1,0 +1,39 @@
+From 4064b8757cbb28588fdff2529ea203bf3eabc579 Mon Sep 17 00:00:00 2001
+From: Holger Freyther <zecke@selfish.org>
+Date: Wed, 26 Sep 2012 17:22:30 +0200
+Subject: [PATCH] qlibraryinfo: allow to set qt.conf from the outside using the
+ environment
+
+Allow to set a qt.conf from the outside using the environment. This allows
+to inject new prefixes and other paths into qmake. This is needed when using
+the same qmake binary to build qt/x11 and qt/embedded
+
+Upstream-Status: Inappropriate [embedded specific]
+  again very OE specific to read everything from environment (reusing the same
+  qmake from sstate and replacing all configured paths in it with qt.conf from
+  environment).
+
+Change-Id: I41595c6ce7514e8f197d0a19a1308c9460037d1b
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+---
+ src/corelib/global/qlibraryinfo.cpp | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/src/corelib/global/qlibraryinfo.cpp b/src/corelib/global/qlibraryinfo.cpp
+index 92729b06f1..dac7857600 100644
+--- a/src/corelib/global/qlibraryinfo.cpp
++++ b/src/corelib/global/qlibraryinfo.cpp
+@@ -101,7 +101,12 @@ static QSettings *findConfiguration()
+     if (qtconfManualPath)
+         return new QSettings(*qtconfManualPath, QSettings::IniFormat);
+ 
+-    QString qtconfig = QStringLiteral(":/qt/etc/qt.conf");
++    QByteArray config = getenv("OE_QMAKE_QTCONF_PATH");
++    QString qtconfig = QFile::decodeName(config);
++    if (QFile::exists(qtconfig))
++        return new QSettings(qtconfig, QSettings::IniFormat);
++
++    qtconfig = QStringLiteral(":/qt/etc/qt.conf");
+     if (QFile::exists(qtconfig))
+         return new QSettings(qtconfig, QSettings::IniFormat);
+ #ifdef Q_OS_DARWIN

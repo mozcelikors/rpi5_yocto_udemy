@@ -1,0 +1,41 @@
+From 481452adfddf754b1ffaca53f484c366edc5a3f5 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Wed, 29 Jan 2020 12:39:09 +0200
+Subject: [PATCH] Allow qtwaylandscanner to be built without dependencies
+
+Change-Id: I15aa5fc5128fcd0925d5950596bd56710b5b81d4
+Upstream-Status: Inappropriate [OE Specific]
+---
+ CMakeLists.txt     | 5 -----
+ src/CMakeLists.txt | 2 +-
+ 2 files changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6649dfcc..02f677b8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -18,11 +18,6 @@ find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS
+ )
+ qt_internal_project_setup()
+ 
+-if(NOT MACOS AND NOT QNX AND (ANDROID OR NOT LINUX))
+-    message(NOTICE "Skipping the build as the condition \"LINUX OR MACOS OR QNX\" is not met.")
+-    return()
+-endif()
+-
+ find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS
+     Core
+ )
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index c3219f9d..9886cb51 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -20,7 +20,7 @@ endforeach()
+ 
+ qt_find_package(Wayland 1.15 PROVIDED_TARGETS ${wayland_libs})
+ 
+-if (NOT WaylandScanner_FOUND OR NOT Wayland_FOUND)
++if ((QT_FEATURE_wayland_server OR QT_FEATURE_wayland_client) AND (NOT WaylandScanner_FOUND OR NOT Wayland_FOUND))
+     message(WARNING "QtWayland is missing required dependencies, nothing will be built. \
+ Although this could be considered an error, the configuration will still pass as coin (Qt's \
+ continuous integration system) will fail the build if configure fails, but will still try to \
