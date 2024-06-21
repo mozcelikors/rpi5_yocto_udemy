@@ -1,0 +1,171 @@
+version: 2
+accept_configuration:
+  condition: and
+  conditions:
+    - condition: property
+      property: host.compiler
+      equals_value: Yocto
+    - condition: property
+      property: target.arch
+      in_values: [TARGET1, TARGET2, TARGET3, TARGET4, TARGET5]
+
+machine_type:
+  Build:
+    cores: 16
+
+# Target build matrix:
+#
+#           [target1]       [target2]   [target3]       [target4]       [target5]
+# [machine] qemuarm64       qemux86-64  qemuarm         qemux86         qemuarm64
+# [yocto]   master          master      master          nanbield        kirkstone
+# [wayland] yes             no          no              yes             yes
+# [mingw]   no              no          no              yes             no
+# [static]  no              no          no              no              yes
+#
+
+target1: &target1
+  type: Group
+  instructions:
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemuarm64
+    - type: EnvironmentVariable
+      variableName: MANIFEST
+      variableValue: master.xml
+    - type: EnvironmentVariable
+      variableName: TEST_CONFIGS
+      variableValue: ci configs wayland
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET1
+target2: &target2
+  type: Group
+  instructions:
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemux86-64
+    - type: EnvironmentVariable
+      variableName: MANIFEST
+      variableValue: master.xml
+    - type: EnvironmentVariable
+      variableName: TEST_CONFIGS
+      variableValue: ci configs
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET2
+target3: &target3
+  type: Group
+  instructions:
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemuarm
+    - type: EnvironmentVariable
+      variableName: MANIFEST
+      variableValue: master.xml
+    - type: EnvironmentVariable
+      variableName: TEST_CONFIGS
+      variableValue: ci configs
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET3
+target4: &target4
+  type: Group
+  instructions:
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemux86
+    - type: EnvironmentVariable
+      variableName: MANIFEST
+      variableValue: nanbield.xml
+    - type: EnvironmentVariable
+      variableName: TEST_CONFIGS
+      variableValue: ci configs wayland mingw no-webengine
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET4
+target5: &target5
+  type: Group
+  instructions:
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemuarm64
+    - type: EnvironmentVariable
+      variableName: MANIFEST
+      variableValue: kirkstone.xml
+    - type: EnvironmentVariable
+      variableName: TEST_CONFIGS
+      variableValue: ci configs wayland static no-webengine
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET5
+
+instructions:
+  Build:
+  - *target1
+  - *target2
+  - *target3
+  - *target4
+  - *target5
+  - type: EnvironmentVariable
+    variableName: DL_DIR
+    variableValue: "/mnt/yocto-cache/downloads"
+  - type: EnvironmentVariable
+    variableName: SOURCE_DIR
+    variableValue: "{{.SourceDir}}"
+  - type: SetBuildDirectory
+    directory: "{{.AgentWorkingDir}}/build"
+  - type: MakeDirectory
+    directory: "{{.BuildDir}}"
+  - type: ChangeDirectory
+    directory: "{{.BuildDir}}"
+  - type: WriteFile
+    fileContents: |
+      #!/bin/bash -xe
+
+      # make hostname unique for NFS
+      sudo hostname $(hostname -s)-$(date +%s%N)
+
+      sudo mkdir -p /mnt/yocto-cache
+      sudo mount yocto-cache.ci.qt.io:/srv/yocto-cache /mnt/yocto-cache
+
+      curl https://storage.googleapis.com/git-repo-downloads/repo > repo
+      chmod +x repo
+
+      ./repo init \
+          --repo-url https://github.com/theqtcompany/git-repo \
+          -u git://code.qt.io/yocto/boot2qt-manifest \
+          -b ci \
+          -m ${MANIFEST} \
+          --reference /mnt/yocto-cache/mirror
+      ./repo sync
+
+      source ./poky/oe-init-build-env
+      bitbake-layers add-layer ../meta-openembedded/meta-oe
+      bitbake-layers add-layer ../meta-openembedded/meta-python
+      bitbake-layers add-layer ../meta-openembedded/meta-multimedia
+      bitbake-layers add-layer ../meta-mingw
+      bitbake-layers add-layer ${SOURCE_DIR}
+
+      for conf in ${TEST_CONFIGS}; do
+        echo "require ${SOURCE_DIR}/coin/test-${conf}.inc" >> conf/local.conf
+      done
+
+      # build toolchain which should include all supported recipes
+      bitbake meta-toolchain-qt6 nativesdk-packagegroup-qt6-toolchain-host packagegroup-qt6-modules
+    filename: "{{.BuildDir}}/start-build"
+    fileMode: 420
+  - type: ExecuteCommand
+    command: ["bash", "-xe", "{{.BuildDir}}/start-build"]
+    maxTimeInSeconds: 43200
+    maxTimeBetweenOutput: 7200
+    userMessageOnFailure: "Build failed."
+  - type: ExecuteCommand
+    command: ["sudo", "umount", "/mnt/yocto-cache"]
+    userMessageOnFailure: "Unmounting cache failed."
+
+  Test: []

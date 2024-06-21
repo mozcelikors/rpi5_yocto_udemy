@@ -1,0 +1,87 @@
+From 7eb6877c15ab9d73c9a7cf3a8a17a1a23f7396f9 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 29 Apr 2019 12:00:19 +0300
+Subject: [PATCH] Remove the GN settings done for clang that conflict with OE
+
+clang cross compiler that is build with meta-clang has lot of these
+settings built-in and specifying them here confuses the compiler
+
+--target option and -no-canonical-prefixes options result in clang
+
+finding the headers in target sysroot
+
+Upstream-Status: Inappropriate [OE-Specific]
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Rebased-by: Maksim Sisov <msisov@igalia.com>
+Rebased-by: Randy MacLeod <randy.macleod@windriver.com>
+
+---
+ build/config/compiler/BUILD.gn | 38 ----------------------------------
+ 1 file changed, 38 deletions(-)
+
+--- a/chromium/build/config/compiler/BUILD.gn
++++ b/chromium/build/config/compiler/BUILD.gn
+@@ -1065,11 +1065,6 @@ config("compiler_cpu_abi") {
+         ]
+       }
+     } else if (current_cpu == "arm") {
+-      if (is_clang && !is_android && !is_nacl &&
+-          !(is_chromeos_lacros && is_chromeos_device)) {
+-        cflags += [ "--target=arm-linux-gnueabihf" ]
+-        ldflags += [ "--target=arm-linux-gnueabihf" ]
+-      }
+       if (!is_nacl) {
+         cflags += ["-mfloat-abi=$arm_float_abi"]
+         if (arm_arch != "") {
+@@ -1082,12 +1077,6 @@ config("compiler_cpu_abi") {
+       if (arm_tune != "") {
+         cflags += [ "-mtune=$arm_tune" ]
+       }
+-    } else if (current_cpu == "arm64") {
+-      if (is_clang && !is_android && !is_nacl && !is_fuchsia &&
+-          !(is_chromeos_lacros && is_chromeos_device)) {
+-        cflags += [ "--target=aarch64-linux-gnu" ]
+-        ldflags += [ "--target=aarch64-linux-gnu" ]
+-      }
+     } else if (current_cpu == "mipsel" && !is_nacl) {
+       ldflags += [ "-Wl,--hash-style=sysv" ]
+       if (custom_toolchain == "") {
+@@ -1095,9 +1084,6 @@ config("compiler_cpu_abi") {
+           if (is_android) {
+             cflags += [ "--target=mipsel-linux-android" ]
+             ldflags += [ "--target=mipsel-linux-android" ]
+-          } else {
+-            cflags += [ "--target=mipsel-linux-gnu" ]
+-            ldflags += [ "--target=mipsel-linux-gnu" ]
+           }
+         } else {
+           cflags += [ "-EL" ]
+@@ -1177,8 +1163,6 @@ config("compiler_cpu_abi") {
+       ldflags += [ "-Wl,--hash-style=sysv" ]
+       if (custom_toolchain == "") {
+         if (is_clang) {
+-          cflags += [ "--target=mips-linux-gnu" ]
+-          ldflags += [ "--target=mips-linux-gnu" ]
+         } else {
+           cflags += [ "-EB" ]
+           ldflags += [ "-EB" ]
+@@ -1226,9 +1210,6 @@ config("compiler_cpu_abi") {
+           if (is_android) {
+             cflags += [ "--target=mips64el-linux-android" ]
+             ldflags += [ "--target=mips64el-linux-android" ]
+-          } else {
+-            cflags += [ "--target=mips64el-linux-gnuabi64" ]
+-            ldflags += [ "--target=mips64el-linux-gnuabi64" ]
+           }
+         } else {
+           cflags += [
+@@ -1286,8 +1267,6 @@ config("compiler_cpu_abi") {
+       ldflags += [ "-Wl,--hash-style=sysv" ]
+       if (custom_toolchain == "") {
+         if (is_clang) {
+-          cflags += [ "--target=mips64-linux-gnuabi64" ]
+-          ldflags += [ "--target=mips64-linux-gnuabi64" ]
+         } else {
+           cflags += [
+             "-EB",

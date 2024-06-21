@@ -1,0 +1,26 @@
+From f8deb4c6db7d1f8badbab5b1c81d1cab3f879db1 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Fri, 3 Jun 2022 06:50:08 +0000
+Subject: [PATCH] Skip embree on mingw
+
+Build fails with older mingw headers, skip it complete since
+it's not needed for the toolchain.
+
+Upstream-Status: Inappropriate [OE Specific]
+---
+ src/3rdparty/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/3rdparty/CMakeLists.txt b/src/3rdparty/CMakeLists.txt
+index cbb855f5..5d11993f 100644
+--- a/src/3rdparty/CMakeLists.txt
++++ b/src/3rdparty/CMakeLists.txt
+@@ -3,7 +3,7 @@
+ #   macOS on x86_64 and arm64
+ #   Linux on x86_64 and arm64
+ # because it's restricted to what Embree builds on in practice.
+-if((WIN32 AND (TEST_architecture_arch STREQUAL x86_64))
++if((FALSE AND (TEST_architecture_arch STREQUAL x86_64))
+         OR (MACOS AND ((TEST_architecture_arch STREQUAL x86_64) OR (TEST_architecture_arch STREQUAL arm64)))
+         OR (LINUX AND ((TEST_architecture_arch STREQUAL x86_64) OR (TEST_architecture_arch STREQUAL arm64))))
+     add_subdirectory(embree)

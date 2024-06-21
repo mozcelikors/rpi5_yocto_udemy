@@ -1,0 +1,5 @@
+SSTATE_DIR = "/mnt/yocto-cache/sstate-caches/${DISTRO}-${DISTRO_CODENAME}"
+BB_HASHSERVE = "yocto-cache.ci.qt.io:8686"
+DL_DIR = "/mnt/yocto-cache/downloads"
+BB_GENERATE_MIRROR_TARBALLS = "1"
+BB_NUMBER_THREADS = "8"
