@@ -5,7 +5,6 @@ LICENSE = "CLOSED"
 RDEPENDS:${PN}:append = " bash "
 
 SRC_URI = "git://github.com/raspberrypi/utils.git;protocol=https;branch=master"
-SRC_URI += " file://git/CMakeLists.txt "
 
 SRCREV = "b9c63214c535d7df2b0fa6743b7b3e508363c25a"
 
