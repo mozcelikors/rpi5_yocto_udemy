@@ -49,3 +49,20 @@ Limit cores and threads from local.conf
 ###########################################
 BB_NUMBER_THREADS="10"
 PARALLEL_MAKE="-j 2"
+
+Cook application SDK
+#########################
+bitbake meta-toolchain
+or
+bitbake meta-toolchain-qt6
+or
+bitbake meta-toolchain-moz
+
+Install application SDK
+#########################
+Execute the script from tmp/deploy/sdk/*toolchain
+
+Use the application SDK
+###########################
+. /opt/poky/5.0.1/environment-setup-cortexa76-poky-linux
+
