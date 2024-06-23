@@ -1,0 +1,1 @@
+CMDLINE_SERIAL = "console=ttyAMA0,115200"
